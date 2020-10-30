@@ -13107,7 +13107,22 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>By applying <code>pandas.DataFrame.info()</code> and <code>pandas.DataFrame.sample()</code>, I was able to identify several quality and tidiness issues of the three datasets.  <code>pandas.DataFrame.info()</code> can reval the data type errors and missing values; <code>pandas.DataFrame.sample()</code> can help me visually observe the dataframe and identify issues.</p>
+<p>By applying <code>pandas.DataFrame.info()</code>, <code>pandas.DataFrame.describe()</code> and <code>pandas.DataFrame.sample()</code>, I was able to identify several quality and tidiness issues of the three datasets.  <code>pandas.DataFrame.info()</code> can reval the data type errors and missing values; <code>pandas.DataFrame.sample()</code> can help me visually observe the dataframe and identify issues, <code>pandas.DataFrame.describe()</code> can show some statistics of the numerical data.</p>
+<p>I also opened the data files in excel to visually check the data quality and tidiness, since Pandas cannot show the full data frame at once.</p>
+<h5 id="Quality-issues:">Quality issues:<a class="anchor-link" href="#Quality-issues:">&#182;</a></h5><ul>
+<li>Some data types are not correct</li>
+<li>Some columns have too many null values</li>
+<li>Some dog names are wrong, such as "a", "the", and "an".</li>
+<li>Some columns have "None" instead of "nan"</li>
+<li>There zero values in column <code>rating_denominator</code>, which is not correct</li>
+<li>Some rating_denominator are not 10</li>
+<li>Multiple dog stage names in same row</li>
+<li>Some rows are retweets and should be dropped</li>
+</ul>
+<h5 id="Tidiness-issues:">Tidiness issues:<a class="anchor-link" href="#Tidiness-issues:">&#182;</a></h5><ul>
+<li>The four dog stage columns (doggo, floofer, puppo, and pupper) should be combined into one</li>
+<li>Since every observation unit should form one table, the three tables should be merged into one master table</li>
+</ul>
 
 </div>
 </div>
@@ -13126,10 +13141,12 @@ div#notebook {
 <ul>
 <li>Merged the three dataframes into one master dataframe and dropped columns with too many null values</li>
 <li>Corrected erroneous data types using astype() function</li>
-<li>Used str.extract() function to extract dog stage from .text and made a new column called dog_stage.</li>
+<li>Used .replace() to replace all "None" with "nan"</li>
+<li>Combined doggo, floofer, pupper, puppo into one column named dog_stage</li>
 <li>Dropped columns doggo, floofer, pupper, puppo</li>
+<li>Removed rows of retweet</li>
 </ul>
-<p>Finally, I have a cleaned dataframe <code>twitter_archive_master</code></p>
+<p>Finally, I have a cleaned dataframe and saved it as <code>twitter_archive_master.csv</code></p>
 
 </div>
 </div>
